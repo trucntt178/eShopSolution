@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopSolution.Data", "eShopSolution.Data\eShopSolution.Data.csproj", "{B574375F-62D0-4AEA-BE18-9B8BF4DE2FDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopSolution.Application", "eShopSolution.Application\eShopSolution.Application.csproj", "{7074322A-F598-4637-B78A-62270388047A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{B2F8AF56-63C1-4973-A86E-6C567FBD8F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2F8AF56-63C1-4973-A86E-6C567FBD8F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2F8AF56-63C1-4973-A86E-6C567FBD8F9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B574375F-62D0-4AEA-BE18-9B8BF4DE2FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B574375F-62D0-4AEA-BE18-9B8BF4DE2FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B574375F-62D0-4AEA-BE18-9B8BF4DE2FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B574375F-62D0-4AEA-BE18-9B8BF4DE2FDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7074322A-F598-4637-B78A-62270388047A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7074322A-F598-4637-B78A-62270388047A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7074322A-F598-4637-B78A-62270388047A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7074322A-F598-4637-B78A-62270388047A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
