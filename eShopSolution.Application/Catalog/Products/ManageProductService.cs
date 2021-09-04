@@ -4,12 +4,11 @@ using eShopSolution.Application.Dtos;
 using eShopSolution.Data.EF;
 using eShopSolution.Data.Entities;
 using eShopSolution.Utilities.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace eShopSolution.Application.Catalog.Products
 {
@@ -58,14 +57,9 @@ namespace eShopSolution.Application.Catalog.Products
         public async Task<int> Delete(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
-            if (product == null) throw new EShopException($"Cannot find a product: {productId}");
+            if (product == null) throw new EShopException($"Cannot find a product with Id: {productId}");
             _context.Products.Remove(product);
             return await _context.SaveChangesAsync();
-        }
-
-        public async Task<List<ProductViewModel>> GetAll()
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
@@ -118,17 +112,37 @@ namespace eShopSolution.Application.Catalog.Products
 
         public async Task<int> Update(ProductUpdateRequest request)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(request.Id);
+            var productTranslations = await _context.ProductTranslations
+                .FirstOrDefaultAsync(x => x.ProductId == request.Id && x.LanguageId == request.LanguageId);
+
+            if (product == null || productTranslations == null) 
+                throw new EShopException($"Cannot find a product with Id: {request.Id}");
+
+            productTranslations.Name = request.Name;
+            productTranslations.Description = request.Description;
+            productTranslations.Details = request.Details;
+            productTranslations.SeoAlias = request.SeoAlias;
+            productTranslations.SeoDescription = request.SeoDescription;
+            productTranslations.SeoTitle = request.SeoTitle;
+            return await _context.SaveChangesAsync();
+
         }
 
-        public Task<bool> UpdatePrice(int productId, decimal newPrice)
+        public async Task<bool> UpdatePrice(int productId, decimal newPrice)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null) throw new EShopException($"Cannot find a product with Id: {productId}");
+            product.Price = newPrice;
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> UpdateStock(int productId, int addedQuantity)
+        public async Task<bool> UpdateStock(int productId, int addedQuantity)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null) throw new EShopException($"Cannot find a product with Id: {productId}");
+            product.Stock = addedQuantity;
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }
